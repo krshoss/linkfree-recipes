@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "LinkFree User Profile",
+  "description": "A user profile for LinkFree, displayed as linkfree.eddiehub.io/[username]",
+  "required": ["name", "type", "bio", "avatar", "links"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name of the user/community",
+      "description": "Your name goes here, or the name of your community also supported if \"type\" is set to \"community\""
+    },
+    "displayStatsPublic": {
+      "type": "boolean",
+      "default": false,
+      "title": "Controls whether your stats are public",
+      "description": "If set to true, your stats will be displayed on your profile, a pill/badge will be adding to your avatar's top right corner and a counter next to links, the number of the avatar badge will display how many times you profile was viewed and the counter next to links shows how many clicks the link got"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["personal", "community"],
+      "title": "Controls the type of linkfree profile",
+      "description": "If set to \"personal\", your profile will be displayed as a personal profile, if set to \"community\", your profile will be displayed as a community profile. There aren't any other major changes"
+    },
+    "bio": {
+      "type": "string",
+      "title": "A short bio about you or your community",
+      "description": "This will be displayed on your profile under your name. Supports markdown"
+    },
+    "avatar": {
+      "type": "string",
+      "pattern": "^https?://.+",
+      "title": "Link to a image that has your profile picture",
+      "description": "Recommended to be https://github.com/[username].png"
+    },
+    "links": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "url", "icon"],
+				"title": "List of links for your linkfree profile",
+				"description": "Each of these will be displayed as buttons on your profile",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "The name of the link",
+            "description": "This will be the text of the button which links to your link"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^(https?://|mailto:|tel:).+",
+            "title": "The link, where the button will take the viewer when clicked",
+            "description": "This will be the anchor tag's href attribute"
+          },
+          "icon": {
+            "type": "string",
+            "pattern": "^(Fa|Si)",
+            "title": "The icon of the link",
+            "description": "This will be the icon of the button, it should be a valid icon from react-icons, like \"FaGithub\" or \"SiGmail\""
+          },
+          "color": {
+            "type": "string",
+            "title": "The accent color of the link",
+            "description": "It will be used to color the link button. It should be a valid CSS color, like \"#ff0000\" or \"red\", you can also use rbg and hsl values like \"rgb(255, 0, 0)\" or \"hsl(0, 100%, 50%)\""
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags for your profile",
+      "description": "These tags will be displayed as pills on your profile, use these to define areas of interests (eg: \"Open Source\", \"NextJs\", \"Freelancing\", \"Content Writing\")"
+    },
+    "testimonials": {
+      "type": "array",
+      "items": {
+        "type": "string",
+				"title": "List of github username's who have provided you a testimonial",
+				"description": "A file with the name of the item in this array must be present in data/[your username]/testimonials directory, eg: if the item is: \"krshkun\" and the user is \"eddiejaoude\", then there must be a \"data/eddiejaoude/testimonials/krshkun.json\""
+      },
+      "title": "Testimonials for your profile",
+      "description": "A list of github username's who have provided you a testimonial, testimonial must be present in data/[your username]/testimonials directory"
+    },
+    "socials": {
+      "type": "array",
+			"title": "List of social shortcut icons for your linkfree profile",
+			"description": "Each of these will be displayed as icons underneath your name & bio",
+      "items": {
+        "type": "object",
+				"title": "Social shortcut icons for your linkfree profile",
+				"description": "These will be displayed as an icon underneath your name & bio",
+        "required": ["url", "icon"],
+        "properties": {
+          "url": {
+            "type": "string",
+            "pattern": "^(https?://|mailto:|tel:).+",
+            "title": "The link, where the icon will take the viewer when clicked",
+            "description": "This will be the anchor tag's href attribute"
+          },
+          "icon": {
+            "type": "string",
+            "pattern": "^(Fa|Si)",
+            "title": "The icon of the shortcut",
+            "description": "This will be the icon displayed, it should be a valid icon from react-icons, like \"FaGithub\" or \"SiGmail\""
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "milestones": {
+      "type": "array",
+			"title": "List of milestones for your linkfree profile",
+			"description": "Each of these will be displayed as a card in the tab \"Milestones\"",
+      "items": {
+        "type": "object",
+        "required": ["icon", "title", "date", "color", "description"],
+        "properties": {
+          "url": {
+            "type": "string",
+            "pattern": "^(https?://|mailto:|tel:).+",
+						"title": "The link, where the card will take the viewer when clicked",
+						"description": "This will be the anchor tag's href attribute"
+          },
+          "icon": {
+            "type": "string",
+            "pattern": "^(Fa|Si)",
+						"title": "The icon of the milestone",
+						"description": "This will be the icon displayed, it should be a valid icon from react-icons, like \"FaGithub\" or \"SiGmail\""
+          },
+          "title": {
+            "type": "string",
+						"title": "The title of the milestone",
+						"description": "This will be the title of the card"
+          },
+          "date": {
+            "type": "string",
+						"title": "The date of the milestone achieved",
+						"description": "Not necessary for this to be an exact date, this can be anything that represents time, eg: May 2022, 2022, 2nd of July 2022"
+          },
+          "color": {
+            "type": "string",
+						"title": "The accent color of the milestone",
+						"description": "It will be used to color the milestone card. It should be a valid CSS color, like \"#ff0000\" or \"red\", you can also use rbg and hsl values like \"rgb(255, 0, 0)\" or \"hsl(0, 100%, 50%)\""
+          },
+          "description": {
+            "type": "string",
+						"title": "The description of the milestone",
+						"description": "This will be the description of the card"
+          },
+          "image": {
+            "type": "string",
+            "title": "The image of the milestone",
+            "description": "This will be the image of the card, it should be a valid image url or a base64 encoded image [THIS WILL BE IMPLEMENTED IN FUTURE]"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

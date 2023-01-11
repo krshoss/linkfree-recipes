@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LinkFree User Event",
+  "description": "Events defined using this syntax, are displayed on a user's profile in \"Event\" Tab, events are also displayed in the community event directory",
+  "type": "object",
+  "required": ["name", "description", "date", "url"],
+  "properties": {
+    "isVirtual": {
+      "type": "boolean",
+      "default": false,
+      "title": "Controls whether the event is virtual or not",
+      "description": "If this field is marked true, then the event will be marked as a virtual event, it will be shown when when filtered by virtual events and it will also have a icon indicating it's virtual. If the event is an hybrid event, please mark both this and \"isInPerson\" as true."
+    },
+    "isInPerson": {
+      "type": "boolean",
+      "default": false,
+      "title": "Controls whether the event is in-person or not",
+      "description": "If this field is marked true, then the event will be marked as an in-person event, it will be shown when when filtered by in-person events and it will also have a icon indicating it's in-person. If the event is an hybrid event, please mark both this and \"isVirtual\" as true."
+    },
+    "color": {
+      "type": "string",
+      "title": "The accent color of the event card",
+      "description": "It will be used to color the event card. It should be a valid CSS color, like \"#ff0000\" or \"red\", you can also use rbg and hsl values like \"rgb(255, 0, 0)\" or \"hsl(0, 100%, 50%)\""
+    },
+    "name": {
+      "type": "string",
+      "title": "The name of the event",
+      "description": "This will show up a title on the event card. Recommended to make it be the name of the event, for a event \"EddieCon\", this field will be \"EddieCon\""
+    },
+    "description": {
+      "type": "string",
+      "title": "A longer description of the event",
+      "description": "This will show up as a text or body content on the event card. Recommended to make it the official description of the event (taglines, slogans, meta description of the event's website, descriptions on the landing), for a event \"NextJs Conf\", It will be \"exploring the world of React and web development\""
+    },
+    "date": {
+      "type": "object",
+      "required": ["start", "end"],
+      "title": "An object defining the start, end and optionally the end of the CFPs of the event",
+      "description": "Start-end date-time of the event, used to filter and sort events, these fields are also displayed on the cards",
+      "properties": {
+        "start": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}[+-]\\d{2}:\\d{2}$",
+          "title": "The start date-time of the event",
+          "description": "It should be in format \"YYYY-MM-DDTHH:mm:SS.ZZZ+HH:MM\", for eg, a event starting on 15 minutes past 3am on the 2nd of feburary, 2021 IST (GMT+5:30), will be: \"2021-02-01T21:15:00.000+05:30\""
+        },
+        "end": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}[+-]\\d{2}:\\d{2}$",
+          "title": "The end date-time of the event",
+          "description": "It should be in format \"YYYY-MM-DDTHH:mm:SS.ZZZ+HH:MM\", for eg, a event ending on 15 minutes past 3am on the 2nd of feburary, 2021 IST (GMT+5:30), will be: \"2021-02-01T21:15:00.000+05:30\""
+        },
+        "cfpClose": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}[+-]\\d{2}:\\d{2}$",
+          "title": "The date-time when the CFP closes",
+          "description": "It should be in format \"YYYY-MM-DDTHH:mm:SS.ZZZ+HH:MM\", for eg, a CFP ending on 15 minutes past 3am on the 2nd of feburary, 2021 IST (GMT+5:30), will be: \"2021-02-01T21:15:00.000+05:30\". If the CFP is not open, then this field can be omitted. If specified, and the date-time give is in the future (relative to time of user viewing), a icon will be shown on the event card indicating that the CFP is open, and the event will also show up when filtered by CFP open events."
+        }
+      },
+      "additionalProperties": false
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https?://.+",
+      "title": "The URL of the event (website/registration)",
+      "description": "This will be used to link the event card to the event's website. Recommended to make it the official website of the event, for a event \"EddieCon\", this field will be https://www.eddiehub.org/eddiecon-01?r_done=1"
+    }
+  },
+  "anyOf": [
+    {
+      "properties": {
+        "isVirtual": {
+          "const": true
+        },
+        "isInPerson": {
+          "const": true
+        }
+      }
+    },
+    {
+      "properties": {
+        "isVirtual": {
+          "const": true
+        },
+        "isInPerson": {
+          "const": false
+        }
+      }
+    },
+    {
+      "properties": {
+        "isVirtual": {
+          "const": false
+        },
+        "isInPerson": {
+          "const": true
+        }
+      }
+    },
+    {
+      "properties": {
+        "isVirtual": {
+          "const": true
+        }
+      }
+    },
+    {
+      "properties": {
+        "isInPerson": {
+          "const": true
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,58 @@
+{
+  "name": "linkfree-recipes",
+  "version": "0.0.1",
+  "description": "Tools for linkfree to manage (validate, update and create)  data",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krshoss/linkfree-recipes.git"
+  },
+  "keywords": [
+    "linkfree",
+    "data",
+    "validation",
+    "schema"
+  ],
+  "author": "Krish Gupta <hey@krsh.eu.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krshoss/linkfree-recipes/issues"
+  },
+  "homepage": "https://github.com/krshoss/linkfree-recipes#readme",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "globby": "^13.1.3",
+    "trevenant": "^1.0.0"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.7",
+    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "@types/node": "^18.8.3",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-config-standard-with-typescript": "^26.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "semantic-release": "^20.0.0",
+    "tsc": "^2.0.4",
+    "typescript": "*"
+  },
+  "types": "types/index.d.ts",
+  "files": [
+    "dist",
+    "types",
+    "README.md",
+    "LICENSE"
+  ]
+}
