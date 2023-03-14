@@ -69,6 +69,6 @@ Your commit message should be something which gives concise idea of the issue yo
 git push origin your-branch-name
 ```
 
-**8.** Create a new [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) from `your-branch-name`
+**8.** Create a new [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) from `your-branch-name`
 
 🎉 Congratulations! You've made your first pull request! Now, you should wait until the maintainers review your pull request.
